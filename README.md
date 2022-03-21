@@ -1,2 +1,0 @@
-# jpesos
-My personal repository.
