@@ -33,7 +33,6 @@ def find_relationship(): ###Returns number of relationships defined by command i
     gd_input = user_args.generation
     print('You have selected', gd_input, 'generation depth.')
     
-    
     me_input = user_args.meioses
     print('You have selected', me_input, 'number of meioses events.')
     
