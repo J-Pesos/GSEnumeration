@@ -410,8 +410,8 @@ if __name__ == '__main__':
             summary_matrix[row][4] = meioses_file[ID1 + 1][ID2 + 1]
             row += 1
     
-    summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,2:5] == 'NA'), axis = 1) ###Remove rows with NA.
-    summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,0:2] == 0), axis = 1) ###Remove excess rows where IDs are '0' and '0'.
+    #summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,2:5] == 'NA'), axis = 1) ###Remove rows with NA.
+    #summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,0:2] == 0), axis = 1) ###Remove excess rows where IDs are '0' and '0'.
     
     summary_df = pd.DataFrame(summary_matrix) ###Convert array to dataframe with column names.
     summary_df.columns = column_names
