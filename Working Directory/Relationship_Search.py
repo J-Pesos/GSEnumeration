@@ -5,6 +5,9 @@ Created on Fri Apr 22 13:03:31 2022
 @author: joaquin
 """
 
+###Check logic on how the script is choosing to write out results. User should just provide
+###3 files and then be able to provide a name for the output results.
+
 import networkx as nx ###Necessary for creating node networks and reading edgelists.
 import itertools ###Used to iterate to make a list readable.
 import pandas as pd ###Used to create a data frame from list of dictionaries.
@@ -16,7 +19,6 @@ parser = argparse.ArgumentParser()
 def load_args():
 
     #MG - Change -f to -n to represent a networkx_file.
-    parser.add_argument('-n','--networkx', type=str, required=True)
     parser.add_argument('-gd','--generation', type=int)
     parser.add_argument('-me','--meioses', type=int)
     parser.add_argument('-t','--type', type=str)

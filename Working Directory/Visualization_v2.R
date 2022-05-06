@@ -6,7 +6,7 @@ library(rstudioapi)
 setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 
 ###Read in data for fam36415.
-data <- read.delim("fam36415_results.csv")
+data <- read.delim("gutierrez_results.csv")
 
 ###Drop data with IDs that equal 0.
 data <- data[!(data$Indiv1 == '0' | data$Indiv2 == '0'),]
@@ -28,7 +28,7 @@ names(frequency)[2] <- 'Relationship_Type'
 
 ###Create violin plot.
 vp <- ggplot(frequency, aes(x=factor(Relationship_Type), y=Frequencies)) +
-               geom_violin() + geom_boxplot(width=0.1) +
+               geom_violin() +
   scale_x_discrete(name ='Relationship', labels=c('Full Siblings','Full 1st Cousins', 'Full 2nd Cousins', 
   'Half Siblings', 'Half 1st Cousins', 'Half 2nd Cousins', 'Unknown Siblings', 'Unknown 1st Cousins')) +
   theme_bw()
