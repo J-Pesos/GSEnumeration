@@ -285,7 +285,8 @@ if __name__ == '__main__':
     user_args = load_args() #Load in user arguments
     
     nx_prefix = user_args.networkx.split('.txt')[0] ###Store prefix of input file.
-    out_prefix = user_args.output.split('.csv')[0] ###Store prefix of user desired output file.
+    if type(user_args.output) == str:
+        out_prefix = user_args.output.split('.csv')[0] ###Store prefix of user desired output file.
 
     glob_coordinates = [] ###Creates a global variable to store coordinates_input variable once it is generated.
     
@@ -410,8 +411,8 @@ if __name__ == '__main__':
             summary_matrix[row][4] = meioses_file[ID1 + 1][ID2 + 1]
             row += 1
     
-    #summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,2:5] == 'NA'), axis = 1) ###Remove rows with NA.
-    #summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,0:2] == 0), axis = 1) ###Remove excess rows where IDs are '0' and '0'.
+    summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,2:5] == 'NA')[0], axis = 0) ###Remove rows with NA.
+    summary_matrix = np.delete(summary_matrix, np.where(summary_matrix[:,0:2] == 0)[0], axis = 0) ###Remove excess rows where IDs are '0' and '0'.
     
     summary_df = pd.DataFrame(summary_matrix) ###Convert array to dataframe with column names.
     summary_df.columns = column_names
