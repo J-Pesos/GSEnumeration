@@ -36,7 +36,7 @@ Where a direct relationsip is a direct descendant/ancestor and NA applies to exc
 -o --output is a string that will be the file name of the results output from the Enumeration scripts.
 
 ```
-Enumeration.py is the main enumeration script. Input is a family relations .txt or .nx file. Output is a results .csv file with every relationship represented by each row. Relationships returned can also be output if the user searched for a specific type of relationshiup during the initial run - where the output files contians all individual pairs that match the queried relationship.
+Enumeration.py is the main enumeration script. Input is a family relations .txt or .nx file. Output is a results .csv file with every relationship represented by each row. Relationships returned can also be output if the user searched for a specific type of relationshiup during the initial run - where the output files contians all individual pairs that match the queried relationship. Finally, Enumeration.py will output three separate files based on the relationship matrices: generation_depth.xlsx, meioses_event.xlsx, and half_full.xlsx for the final family listed within a family relations file (if multiple are present).
 
 Relationship_Search.py is code that must be edited to take in a generation_depth.xlsx, meioses_event.xlsx, and half_full.xlsx excel files generation from Enumeration.py for an individual family. Relationship_Search.py can then be run to prompt the user for relationship metrics to searh for a specific relationship type in a family represented by the three excel files. Output is written to the console before starting another search.
 
