@@ -31,8 +31,7 @@ Where:
 -me --meioses is the integer of meioses events you want to search for.
 
 -t --type is the type of relationships you want to search for. These include (half, full, direct, NA).
-Where a direct relationsip is a direct descendant/ancestor and NA applies to exclusions such as 
-comparing an individual against themselves.
+Where a direct relationsip is a direct descendant/ancestor and NA applies to exclusions such as comparing an individual against themselves.
 
 -o --output is a string that will be the file name of the results output from the Enumeration scripts.
 
