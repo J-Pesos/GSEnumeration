@@ -19,7 +19,6 @@ parser = argparse.ArgumentParser()
 
 def load_args():
 
-    #MG - Change -f to -n to represent a networkx_file.
     parser.add_argument('-n','--networkx', type=str, required=True)
     parser.add_argument('-gd','--generation', type=int)
     parser.add_argument('-me','--meioses', type=int)
@@ -214,66 +213,30 @@ def identify_relation_statistics(dir_fam, undir_fam):
     generationdepth_array[0, 1:len(fam_list) + 1] = fam_list
     generationdepth_array[1:len(fam_list) + 1, 0] = fam_list
 
-    # half_full_sib_array = np.zeros((len(fam_list) + 1, len(fam_list) + 1), dtype=object)
-    # half_full_sib_array[0,0] = 'ID'
-    # half_full_sib_array[0, 1:len(fam_list) + 1] = fam_list
-    # half_full_sib_array[1:len(fam_list) + 1, 0] = fam_list
-
-
-    # for node1_idx in range(0, len(fam_list)):
-    #     for node2_idx in range(node1_idx + 1, len(fam_list)):
-
-    #         indiv1 = fam_list[node1_idx]  ###Gets raw node for first individual based off index
-    #         indiv2 = fam_list[node2_idx]  ###Gets raw node for second individual based off index
-    #         #print(indiv1, indiv2)
-
-    #         ###Idenitfy meioses count between a pair of individuals.
-    #         me = 0
-    #         meioses_array[node1_idx+1][node2_idx+1] = me  ###Inputting value into matrix
-    #         meioses_array[node2_idx+1][node1_idx+1] = me  ###Inputting value into matrix
-
-    #         ### identify generation depth between a pair of individuals
-    #         gd = 0
-    #         generationdepth_array[node1_idx+1][node2_idx+1] = gd  ###Inputting value into matrix
-    #         generationdepth_array[node2_idx+1][node1_idx+1] = gd  ###Inputting value into matrix
-
-    #         ### idenitfy half, full sibling status between a pair of individuals
-    #         rel_status = 'NA'
-    #         half_full_sib_array[node1_idx+1][node2_idx+1] = rel_status  ###Inputting value into matrix
-    #         half_full_sib_array[node2_idx+1][node1_idx+1] = rel_status  ### Inputting value into matrix
-
-    #code to clean the matricies before inputting
     return (meioses_array, generationdepth_array)
 
 def unknown_or_half(id1, id2): ###Assesses whether two individuals are actually half siblings or have an unknown relationship.
     pred_id1 = full_list_predecessors(id1) ###Store predecessors of id1.
     pred_id2 = full_list_predecessors(id2) ###Store predecessors of id2.
-    #print('Predecessors 1: ', pred_id1)
-    #print('Predecessors 2: ', pred_id2)
     for pred in pred_id1[::-1]: ###Iterates through predecessor list in reverse to find common ancestor with greatest GD.
         if pred in pred_id2[::-1]:
             common_pred = pred ###Common ancestor with greatest GD.
             break
-    #print('Common ancestor: ', common_pred)
     successors = full_list_successors(common_pred) ###Creates a list of successors to common ancestor.
-    #print('Successors: ', successors)
     for succ in successors:
         if succ in pred_id1 and succ not in pred_id2:
             child_1 = succ ###child_1 is the first successor that is ancestor to id1 but not id2.
-            #print('Child 1: ', child_1)
             break
         else:
             child_1 = id1
     for succ in successors:
         if succ in pred_id2 and succ not in pred_id1:
             child_2 = succ ###child_2 is the first successor that is ancestor to id2 but not id1.
-            #print('Child 2: ', child_2)
             break
         else:
             child_2 = id2
     child_1_parents = list(di_family.predecessors(child_1))
     child_2_parents = list(di_family.predecessors(child_2))
-    #print('Parents 1: ', child_1_parents, ' Parents 2: ', child_2_parents)
     if len(child_1_parents) == 2 and len(child_2_parents) == 2: ###Checks to make sure there are at least two parent individuals.
         if child_1_parents != child_2_parents: ###Check to see if parents are shared. If they are not, it is a half relationship.
             return 'half'
@@ -294,11 +257,7 @@ if __name__ == '__main__':
     family = nx.read_edgelist(user_args.networkx, create_using=nx.Graph())
     di_family = nx.read_edgelist(user_args.networkx, create_using=nx.DiGraph())
 
-    #### Start function here
     meioses_file, generation_file = identify_relation_statistics(family, di_family)
-    #print(meioses_file)
-    #print(generation_file)
-    #print(half_sib_file)
 
     family_list = list(family.nodes)
     family_list.sort(key=int)
