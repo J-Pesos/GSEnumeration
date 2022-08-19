@@ -1,7 +1,7 @@
 ### Enumeration of family relationships in a relationships file.
 
 A python script for the enumeration of different family relationships in a
-family relations .txt file.
+family relations .txt or .nx file.
 
 ### Why should I use this project ?
 
@@ -40,7 +40,7 @@ Enumeration.py is the main enumeration script. Input is a family relations .txt 
 
 Relationship_Search.py is code that must be edited to take in a generation_depth.xlsx, meioses_event.xlsx, and half_full.xlsx excel files generation from Enumeration.py for an individual family. Relationship_Search.py can then be run to prompt the user for relationship metrics to searh for a specific relationship type in a family represented by the three excel files. Output is written to the console before starting another search.
 
-Visualization_v2 is an R script that provides the code template for creating beeswarm plots out of the results .csv output from Enumeration.py.
+Visualization is an R script that provides the code template for creating beeswarm plots out of the results .csv output from Enumeration.py.
 
 ### How to cite this project?
 
