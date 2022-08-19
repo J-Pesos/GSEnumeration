@@ -33,12 +33,25 @@ Where:
 -t --type is the type of relationships you want to search for. These include (half, full, direct, NA).
 Where a direct relationsip is a direct descendant/ancestor and NA applies to exclusions such as comparing an individual against themselves.
 
--o --output is a string that will be the file name of the results output from the Enumeration scripts.
+-o --output is a string that will be the file name of the results output from the Enumeration script.
+```
+Once you have three matrix files for an enumerated family (generation_depth.xlsx, meioses_event.xlsx, and half_full.xlsx) you can run the Relationship_Search script from command-line using
+```
+python Enumeration_Final.py -gd -me -t -o
+```
+Where:
+-gd --generation is the integer of generation depth you want to search for.
 
+-me --meioses is the integer of meioses events you want to search for.
+
+-t --type is the type of relationships you want to search for. These include (half, full, direct, NA).
+Where a direct relationsip is a direct descendant/ancestor and NA applies to exclusions such as comparing an individual against themselves.
+
+-o --output is a string that will be the file name of the results output from the Relationship_Search script.
 ```
 Enumeration.py is the main enumeration script. Input is a family relations .txt or .nx file. Output is a results .csv file with every relationship represented by each row. Relationships returned can also be output if the user searched for a specific type of relationshiup during the initial run - where the output files contians all individual pairs that match the queried relationship. Finally, Enumeration.py will output three separate files based on the relationship matrices: generation_depth.xlsx, meioses_event.xlsx, and half_full.xlsx for the final family listed within a family relations file (if multiple are present).
 
-Relationship_Search.py is code that must be edited to take in a generation_depth.xlsx, meioses_event.xlsx, and half_full.xlsx excel files generation from Enumeration.py for an individual family. Relationship_Search.py can then be run to prompt the user for relationship metrics to searh for a specific relationship type in a family represented by the three excel files. Output is written to the console before starting another search.
+Relationship_Search.py is code that takes in a generation_depth.xlsx, meioses_event.xlsx, and half_full.xlsx excel files generated from Enumeration.py for an individual family. Relationship_Search.py can then be run to search relationship metrics in the same directory for a specific relationship type in a family represented by the three excel files. Output is written to the console before starting another search.
 
 Visualization is an R script that provides the code template for creating beeswarm plots out of the results .csv output from Enumeration.py.
 
